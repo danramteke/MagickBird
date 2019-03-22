@@ -1,11 +1,11 @@
 import MagickWandMac
 print("Hello, world!")
-// MagickWand.ConvertImageCommand()
+
 MagickWandGenesis()
 let wand = NewMagickWand()
 let pixel = NewPixelWand()
 
-PixelSetColor(pixel, "red")
+PixelSetColor(pixel, "#222222")
 MagickSetBackgroundColor(wand, pixel)
 
 MagickNewImage(wand, 100, 100, pixel)
