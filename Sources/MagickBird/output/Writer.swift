@@ -6,9 +6,9 @@ public protocol Writable {
 }
 
 public class Writer {
-  let outputDir: URL
+  let outputDir: String
   public init(outputDir: String) {
-    self.outputDir = URL(fileURLWithPath: outputDir)
+    self.outputDir = outputDir
   }
 
   public func write(_ writable: Writable) {

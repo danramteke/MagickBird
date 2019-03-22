@@ -14,14 +14,25 @@ public class Tiler {
     self.maxLevel = originalImage.size.tilingTimes
   }
 
-  public func tile() {
+  public func tile(levels onlyLevels: ClosedRange<Int>? = nil) {
     print("Tiling...")
     print(originalImage.size)
 
     let levels = (0...maxLevel).reversed()
     levels.forEach { level in
-      print("...level \(level)")
-      makeTiles(for: originalImage, at: level)
+
+      if let onlyLevels = onlyLevels {
+        if onlyLevels.contains(level) {
+          makeTiles(for: originalImage, at: level) 
+        } else {
+          print("level \(level) -- SKIPPED")
+        }
+
+      } else {
+        makeTiles(for: originalImage, at: level) 
+      }
+
+      
       originalImage.resize(by: 0.5)
     }
 
@@ -29,6 +40,7 @@ public class Tiler {
   }
 
   private func makeTiles(for image: Image, at level: Int) {
+    print("level \(level)")
     let imageSize = image.size
 
     var position: Tile.Position = .zero 
