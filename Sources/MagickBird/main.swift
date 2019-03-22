@@ -1,16 +1,16 @@
 import MagickWandMac
-print("Hello, world!")
+print("Tiling...")
+Tiler().tile(inputPath: "", outputPath: "")
+// MagickWandGenesis()
+// let wand = NewMagickWand()
+// let pixel = NewPixelWand()
 
-MagickWandGenesis()
-let wand = NewMagickWand()
-let pixel = NewPixelWand()
+// PixelSetColor(pixel, "#222222")
+// MagickSetBackgroundColor(wand, pixel)
 
-PixelSetColor(pixel, "#222222")
-MagickSetBackgroundColor(wand, pixel)
+// MagickNewImage(wand, 100, 100, pixel)
+// MagickWriteImage(wand, "test.jpg")
 
-MagickNewImage(wand, 100, 100, pixel)
-MagickWriteImage(wand, "test.jpg")
-
-DestroyMagickWand(wand)
-DestroyPixelWand(pixel)
-MagickWandTerminus()
+// DestroyMagickWand(wand)
+// DestroyPixelWand(pixel)
+// MagickWandTerminus()

@@ -10,8 +10,8 @@ let package = Package(
     ],
     targets: [
 
-        .target(
-            name: "MagickBird", dependencies: ["MagickWand"]),
+        .target(name: "MagickBird", dependencies: ["MagickWand", "Tiler"]),
+        .target(name: "Tiler", dependencies: ["MagickWand"]),
         .systemLibrary(name: "MagickWand"),
 
         .testTarget(
