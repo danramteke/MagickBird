@@ -29,3 +29,17 @@ extension Size: Equatable {
       && lhs.height == rhs.height
   }
 }
+
+extension Size {
+  var longestLength: Int {
+    return max(self.width, self.height)
+  }
+}
+
+extension Size {
+  var tilingTimes: Int {
+    // Calculates how often an image with given dimension can
+    // be divided by two until 1x1 px are reached.
+    return Int(ceil(log2(Double(self.longestLength))/log2(2)))
+  }
+}
