@@ -1,5 +1,4 @@
-import MagickWandMac
-import Tiler
+import MagickBirdLib
 import Foundation
 print("Tiling...")
 Tiler(inputPath: "", outputPath: "").tile()
