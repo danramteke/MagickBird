@@ -1,5 +1,5 @@
 import Foundation
-import MagickWandMac
+import MagickWand
 
 extension Image {
   public var size: Size {

@@ -1,4 +1,4 @@
-import MagickWandMac
+import MagickWand
 public class Context {
   public init() {
     MagickWandGenesis()

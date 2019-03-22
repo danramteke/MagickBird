@@ -1,4 +1,4 @@
-import MagickWandMac
+import MagickWand
 import Foundation
 
 public class Tiler {

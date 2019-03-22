@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MagickWandMac
+import MagickWand
 
 extension MagickBooleanType {
   public var bool: Bool {

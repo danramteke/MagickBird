@@ -1,4 +1,4 @@
-module MagickWandMac [system] {
+module MagickWand [system] {
     header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickCore/MagickCore.h"
     header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickWand/MagickWand.h"
 

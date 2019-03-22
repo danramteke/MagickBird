@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MagickWandMac
+import MagickWand
 
 public class Image {
   var pointer: OpaquePointer
@@ -85,7 +85,7 @@ public class Image {
   public func read(bytes: [UInt8]) {
     MagickReadImageBlob(self.pointer, bytes, bytes.count)
   }
-  
+
   deinit {
       self.clear()
       self.destroy()
