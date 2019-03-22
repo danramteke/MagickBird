@@ -1,6 +1,8 @@
 import MagickWandMac
+import Tiler
+import Foundation
 print("Tiling...")
-Tiler().tile(inputPath: "", outputPath: "")
+Tiler(inputPath: "", outputPath: "").tile()
 // MagickWandGenesis()
 // let wand = NewMagickWand()
 // let pixel = NewPixelWand()
