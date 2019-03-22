@@ -10,18 +10,12 @@ public class Tiler {
   }
   public let tileSide = 512
   public func tile() {
-    MagickWandGenesis()
+    print("Tiling...")
 
-    let wand: OpaquePointer = NewMagickWand()
+    let image = Image(filePath: self.inputPath)!
+    print(image.size)
 
-    MagickReadImage(wand, "./Samples/subway_map.png")
-
-   let image = Image(filePath: "./Samples/subway_map.png")!
-   print(image.size)
-print(MagickGetImageWidth(wand))
-    print("done")
-//    DestroyMagickWand(wand)
-//    MagickWandTerminus()
+    print("done Tiling")
   }
 }
 

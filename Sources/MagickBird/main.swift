@@ -1,7 +1,10 @@
 import MagickBirdLib
 import Foundation
-print("Tiling...")
-Tiler(inputPath: "", outputPath: "").tile()
+
+let context = Context()
+context.with {
+  Tiler(inputPath: "./Samples/subway_map.png", outputPath: "").tile()
+}
 // MagickWandGenesis()
 // let wand = NewMagickWand()
 // let pixel = NewPixelWand()

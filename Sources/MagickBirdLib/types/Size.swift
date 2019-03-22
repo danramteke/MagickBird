@@ -6,26 +6,26 @@
 //
 
 import Foundation
-public struct Size: Equatable {
 
+public struct Size {
   public static let zero = Size()
 
-  public var width: Int = 0
-  public var height: Int = 0
+  public let width: Int
+  public let height: Int
 
-  public init() { }
+  public init(side: Int) {
+    self.init(width: side, height: side)
+  }
 
-  public init(width: Int, height: Int) {
+  public init(width: Int = 0, height: Int = 0) {
     self.width = width
     self.height = height
   }
+}
 
+extension Size: Equatable {
   public static func ==(lhs: Size, rhs: Size) -> Bool {
     return lhs.width == rhs.width
       && lhs.height == rhs.height
-  }
-
-  public static func !=(lhs: Size, rhs: Size) -> Bool {
-    return !(lhs == rhs)
   }
 }

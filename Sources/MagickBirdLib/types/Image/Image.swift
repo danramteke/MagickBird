@@ -85,11 +85,9 @@ public class Image {
   public func read(bytes: [UInt8]) {
     MagickReadImageBlob(self.pointer, bytes, bytes.count)
   }
-
-
-  public var size: Size {
-    let width = Int(MagickGetImageWidth(self.pointer))
-    let height = Int(MagickGetImageHeight(self.pointer))
-    return Size(width: width, height: height)
+  
+  deinit {
+      self.clear()
+      self.destroy()
   }
 }
