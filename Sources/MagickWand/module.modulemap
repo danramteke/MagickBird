@@ -1,0 +1,10 @@
+module MagickWandMac [system] {
+        header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickCore/magick-baseconfig.h"
+    header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickCore/magick-config.h"
+    header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickCore/MagickCore.h"
+    header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickWand/MagickWand.h"
+
+    link "MagickWand-7.Q16HDRI"
+    link "MagickCore-7.Q16HDRI"
+     export *
+}
