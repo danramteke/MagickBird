@@ -18,15 +18,23 @@ public class Tiler {
     print("Tiling...")
     print(originalImage.size)
 
-    let maxLevel = originalImage.size.tilingTimes
-
     let duplicatedImage = originalImage.clone()!
 
-    let range = (0...14).reversed()
+    let range = (0...maxLevel).reversed()
     range.forEach { level in
-      print(level)
+      doRow(image: duplicatedImage, at: level)
+      duplicatedImage.resize(by: 0.5)
     }
 
     print("done Tiling")
+  }
+
+  private func doRow(image: Image, at level: Int) {
+    var x = 0
+    var y = 0
+    var currentRow = 0
+    var currentColumn = 0
+
+
   }
 }

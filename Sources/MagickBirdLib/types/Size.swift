@@ -38,8 +38,10 @@ extension Size {
 
 extension Size {
   var tilingTimes: Int {
-    // Calculates how often an image with given dimension can
-    // be divided by two until 1x1 px are reached.
-    return Int(ceil(log2(Double(self.longestLength))/log2(2)))
+    // Calculates how often an image with given dimension can be divided by two until 1x1 px are reached.
+
+    let sideLog = log(Double(self.longestLength))
+    let denominator = log(Double(2))
+    return Int(ceil(sideLog/denominator))
   }
 }
