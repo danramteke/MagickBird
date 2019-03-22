@@ -10,18 +10,13 @@ public class Writer {
   public init(outputDir: String) {
     self.outputDir = URL(fileURLWithPath: outputDir)
   }
+
   public func write(_ writable: Writable) {
-    // self.outputDir + writable.filename
     self.write(image: writable.image, to: writable.filename)
   }
 
   public func write(image: Image, to filename: String) {
-    if #available(OSX 10.11, *) {
-      let url = URL(fileURLWithPath: filename, relativeTo: self.outputDir)
-      try! image.data!.write(to: url, options: .atomic)
-    } else {
-      fatalError("requires OS X 10.11")
-    }
-
+    let url = URL(fileURLWithPath: "\(self.outputDir)\(filename)")
+    try! image.data!.write(to: url, options: .atomic)
   }
 }
