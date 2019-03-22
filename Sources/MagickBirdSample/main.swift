@@ -1,4 +1,4 @@
-import MagickBirdLib
+import MagickBird
 import Foundation
 
 MagickBirdContext {

@@ -5,17 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "MagickBird",
+    products: [
+        .library(name: "MagickBird", targets: ["MagickBird"])
+    ],
     dependencies: [
 
     ],
     targets: [
 
-        .target(name: "MagickBird", dependencies: ["MagickBirdLib"]),
-        .target(name: "MagickBirdLib", dependencies: ["MagickWand"]),
+        .target(name: "MagickBirdSample", dependencies: ["MagickBird"]),
+        .target(name: "MagickBird", dependencies: ["MagickWand"]),
         .systemLibrary(name: "MagickWand"),
-
-        .testTarget(
-            name: "MagickBirdTests",
-            dependencies: ["MagickBird"]),
     ]
 )
