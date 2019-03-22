@@ -36,7 +36,7 @@ public class Tiler {
 
     var x = 0
     while x < imageSize.width {
-
+      position = position.resettingY
       var y = 0
       while y < imageSize.height {
         let tileImage = image.clone()!
@@ -47,10 +47,10 @@ public class Tiler {
         writer.write(tile)
 
         y += tileSide
-        position = position.incrementedY()
+        position = position.incrementingY
       }
       x += tileSide
-      position = position.incrementedX()
+      position = position.incrementingX
     }
     
   }

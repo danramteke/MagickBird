@@ -19,12 +19,20 @@ public struct Tile {
       self.y = y
     }
     
-    public func incrementedX() -> Position {
+    public var incrementingX: Position {
       return Position(x: x + 1, y: y)
     }
 
-    public func incrementedY() -> Position {
+    public var incrementingY: Position {
       return Position(x: x, y: y + 1)
+    }
+
+    public var resettingX: Position {
+      return Position(x: 0, y: y)
+    }
+
+    public var resettingY: Position {
+      return Position(x: x, y: 0)
     }
 
     public static let zero: Position = Position(x: 0, y: 0)
