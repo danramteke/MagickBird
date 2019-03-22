@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Size {
-  public static let zero = Size()
+  public static let zero = Size(width: 0, height: 0)
 
   public let width: Int
   public let height: Int
@@ -17,7 +17,7 @@ public struct Size {
     self.init(width: side, height: side)
   }
 
-  public init(width: Int = 0, height: Int = 0) {
+  public init(width: Int, height: Int) {
     self.width = width
     self.height = height
   }

@@ -3,7 +3,7 @@ import Foundation
 
 let context = Context()
 context.with {
-  Tiler(inputPath: "./Samples/subway_map.png", outputPath: "").tile()
+  Tiler(inputPath: "./Samples/subway_map.png", outputPath: "./Samples/output").tile()
 }
 // MagickWandGenesis()
 // let wand = NewMagickWand()

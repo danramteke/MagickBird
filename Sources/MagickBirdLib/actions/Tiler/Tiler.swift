@@ -6,10 +6,10 @@ public class Tiler {
 
   let originalImage: Image
   let maxLevel: Int
-  let outputPath: String
+  let writer: Writer
 
   public init(inputPath: String, outputPath: String) {
-    self.outputPath = outputPath
+    self.writer = Writer(outputDir: outputPath)
     self.originalImage = Image(filePath: inputPath)!
     self.maxLevel = originalImage.size.tilingTimes
   }
@@ -18,23 +18,40 @@ public class Tiler {
     print("Tiling...")
     print(originalImage.size)
 
-    let duplicatedImage = originalImage.clone()!
-
-    let range = (0...maxLevel).reversed()
-    range.forEach { level in
-      doRow(image: duplicatedImage, at: level)
-      duplicatedImage.resize(by: 0.5)
+    let levels = (0...maxLevel).reversed()
+    levels.forEach { level in
+      print("...level \(level)")
+      makeTiles(for: originalImage, at: level)
+      originalImage.resize(by: 0.5)
     }
 
     print("done Tiling")
   }
 
-  private func doRow(image: Image, at level: Int) {
+  private func makeTiles(for image: Image, at level: Int) {
+    let imageSize = image.size
+
+    var position: Tile.Position = .zero 
+
+
     var x = 0
-    var y = 0
-    var currentRow = 0
-    var currentColumn = 0
+    while x < imageSize.width {
 
+      var y = 0
+      while y < imageSize.height {
+        let tileImage = image.clone()!
 
+        tileImage.crop(x: x, y: y, width: tileSide, height: tileSide)
+
+        let tile = Tile(level: level, position: position, image: tileImage)
+        writer.write(tile)
+
+        y += tileSide
+        position = position.incrementedY()
+      }
+      x += tileSide
+      position = position.incrementedX()
+    }
+    
   }
 }

@@ -87,7 +87,33 @@ public class Image {
   }
 
   deinit {
-      self.clear()
-      self.destroy()
+    self.clear()
+    self.destroy()
+  }
+
+  public var imageBytes: [UInt8] {
+    var size: Int = 0
+    guard let imageBlob = MagickGetImageBlob(self.pointer, &size) else {
+      return []
+    }
+    
+    defer {
+      MagickRelinquishMemory(imageBlob)
+    }
+    
+    var result = [UInt8](repeating: 0, count: size)
+    for i in 0..<size {
+        result[i] = imageBlob[i]
+    }
+    
+    return result
+  }
+    
+  public var data: Data? {
+    let array = self.imageBytes
+    
+    guard array.count > 0 else { return nil }
+    
+    return Data(bytes: array)
   }
 }
