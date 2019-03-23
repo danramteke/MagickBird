@@ -6,6 +6,10 @@ extension Image {
     let newSize = self.size.scaled(by: factor)
     MagickResizeImage(self.pointer, newSize.width, newSize.height, LanczosFilter)
   }
+
+  public func resize(to size: Size) {
+    MagickResizeImage(self.pointer, size.width, size.height, LanczosFilter)
+  }
 }
 
 private extension Size {

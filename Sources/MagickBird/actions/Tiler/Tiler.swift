@@ -14,6 +14,12 @@ public class Tiler {
     self.maxLevel = originalImage.size.tilingTimes
   }
 
+  public init(input: Image, writer: Writer) {
+    self.writer = writer
+    self.originalImage = input
+    self.maxLevel = input.size.tilingTimes
+  }
+
   public func tile(levels onlyLevels: ClosedRange<Int>? = nil) {
     print("Tiling...")
     print(originalImage.size)
