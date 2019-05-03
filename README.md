@@ -10,6 +10,11 @@ MagickWand library for Swift
     swift build -Xswiftc -I/usr/local/Cellar/imagemagick/7.0.8-42/include/ImageMagick-7 -Xlinker -L/usr/local/Cellar/imagemagick/7.0.8-42/lib -Xlinker -lMagickWand-7.Q16HDRI -Xlinker -lMagickCore-7.Q16HDRI -Xcc -DMAGICKCORE_HDRI_ENABLE=0 -Xcc -DMAGICKCORE_QUANTUM_DEPTH=16
     swift  run -Xswiftc -I/usr/local/Cellar/imagemagick/7.0.8-42/include/ImageMagick-7 -Xlinker -L/usr/local/Cellar/imagemagick/7.0.8-42/lib -Xlinker -lMagickWand-7.Q16HDRI -Xlinker -lMagickCore-7.Q16HDRI -Xcc -DMAGICKCORE_HDRI_ENABLE=0 -Xcc -DMAGICKCORE_QUANTUM_DEPTH=16
 
+    # or:
+
+    swift build -Xswiftc $(pkg-config --cflags-only-I MagickWand) -Xlinker $(pkg-config --libs MagickWand | sed -e 's/ / -Xlinker&/g')
+    swift   run -Xswiftc $(pkg-config --cflags-only-I MagickWand) -Xlinker $(pkg-config --libs MagickWand | sed -e 's/ / -Xlinker&/g')
+
 ### Generate Xcode project
 
     swift package generate-xcodeproj --xcconfig-overrides Package.xcconfig
