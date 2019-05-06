@@ -15,9 +15,17 @@ let package = Package(
 
         .target(name: "MagickBirdSample", dependencies: ["MagickBird"]),
         .target(name: "MagickBird", dependencies: ["MagickWand"]),
-        .target(name: "MagickWand", dependencies: [], 
-            linkerSettings: [.linkedLibrary("MagickWand-7.Q16HDRI"), .linkedLibrary("MagickCore-7.Q16HDRI")]
-            ),
+        .target(name: "MagickWand", 
+            dependencies: [], 
+            cxxSettings: [
+                .define("MAGICKCORE_HDRI_ENABLE", to: "1"), 
+                .define("MAGICKCORE_QUANTUM_DEPTH", to: "16"),
+            ],
+            linkerSettings: [
+                .linkedLibrary("MagickWand-7.Q16HDRI"), 
+                .linkedLibrary("MagickCore-7.Q16HDRI"),
+            ]
+        ),
         
     ]
 )
