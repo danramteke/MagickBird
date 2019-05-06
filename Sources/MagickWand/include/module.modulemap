@@ -1,5 +1,5 @@
 module MagickWand {
-    header "MagickCore/MagickCore.h"
+    
     umbrella header "MagickWand/MagickWand.h"
 
     export *
