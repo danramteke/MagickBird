@@ -17,8 +17,8 @@ let package = Package(
         .target(name: "MagickBird", dependencies: ["MagickWand"]),
         .target(name: "MagickWand", 
             dependencies: [], 
-            cxxSettings: [
-                .define("MAGICKCORE_HDRI_ENABLE", to: "1"), 
+            cSettings: [
+                .define("MAGICKCORE_HDRI_ENABLE", to: "0"), 
                 .define("MAGICKCORE_QUANTUM_DEPTH", to: "16"),
             ],
             linkerSettings: [
