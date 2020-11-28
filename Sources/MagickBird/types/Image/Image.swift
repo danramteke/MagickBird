@@ -114,6 +114,6 @@ public class Image {
     
     guard array.count > 0 else { return nil }
     
-    return Data(bytes: array)
+    return Data(array)
   }
 }
