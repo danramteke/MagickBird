@@ -1,6 +1,6 @@
 module MagickWand [system] {
-    header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickCore/MagickCore.h"
-    header "/usr/local/opt/imagemagick/include/ImageMagick-7/MagickWand/MagickWand.h"
+    header "MagickCore/MagickCore.h"
+    header "MagickWand/MagickWand.h"
 
     link "MagickWand-7.Q16HDRI"
     link "MagickCore-7.Q16HDRI"
