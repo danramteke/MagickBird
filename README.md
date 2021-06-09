@@ -2,10 +2,18 @@
 
 MagickWand library for Swift. 
 
+Note if building for `arm64` (aka the new M1 chip), add `--arch arm64` to the end of `swift build` or `swift run`
 
-## Helpful Copy/Pastes
 
-Note if building for `arm64` (aka the new M1 chip), add `--arch arm64` to the end.
+## Getting Started
+
+Use `MagickBirdContext`, which will open a `MagickWandGenesis` and close `MagickWandTerminus` around your code:
+
+```
+MagickBirdContext {
+  Tiler(inputPath: "./output/kitten.jpg", outputPath: "./output/").tile(levels: (10...13))
+}
+```
 
 ## Similar Projects / Inspiration
 
