@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -18,6 +18,7 @@ let package = Package(
 
         .target(name: "MagickBirdSample", dependencies: ["MagickBird"]),
         .target(name: "MagickBird", dependencies: ["MagickWand"]),
-        .systemLibrary(name: "MagickWand"),
+        .systemLibrary(name: "MagickWand", pkgConfig: "MagickWand"),
     ]
+
 )
