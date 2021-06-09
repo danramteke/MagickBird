@@ -12,11 +12,7 @@ public struct Resolution {
 }
 
 extension Image {
-	
-	public func setCompressionQuality(_ int: Int) {
-		MagickSetImageCompressionQuality(self.pointer, int)
-	}
-	
+
 	public func setResolution(_ resolution: Resolution) {
 		MagickSetImageResolution(self.pointer, resolution.x, resolution.y)
 	}
@@ -26,9 +22,5 @@ extension Image {
 		var y: Double = 0
 		MagickGetImageResolution(self.pointer, &x, &y)
 		return Resolution(x: x, y: y)
-	}
-	
-	public func setDepth(_ a: Int) {
-		MagickSetImageDepth(self.pointer, a)
 	}
 }
