@@ -70,6 +70,5 @@ public class Tiler {
       x += tileSide
       position = position.incrementingX
     }
-    
   }
 }
