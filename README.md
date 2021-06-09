@@ -1,6 +1,6 @@
 # MagickBird
 
-MagickWand library for Swift
+MagickWand library for Swift. 
 
 
 ## Helpful Copy/Pastes

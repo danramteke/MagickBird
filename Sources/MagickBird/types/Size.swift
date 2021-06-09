@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Size {
+public struct Size: Equatable  {
   public static let zero = Size(width: 0, height: 0)
 
   public let width: Int
@@ -23,16 +23,9 @@ public struct Size {
   }
 }
 
-extension Size: Equatable {
-  public static func ==(lhs: Size, rhs: Size) -> Bool {
-    return lhs.width == rhs.width
-      && lhs.height == rhs.height
-  }
-}
-
 extension Size {
   var longestLength: Int {
-    return max(self.width, self.height)
+    max(self.width, self.height)
   }
 }
 

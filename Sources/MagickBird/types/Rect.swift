@@ -21,6 +21,6 @@ public struct Rect {
   }
 
   public var size: Size {
-    return Size(width: width, height: height)
+    Size(width: width, height: height)
   }
 }
