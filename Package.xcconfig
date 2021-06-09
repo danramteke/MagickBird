@@ -1,3 +1,0 @@
-LIBRARY_SEARCH_PATHS = /usr/local/Cellar/imagemagick/7.0.8-42/lib
-HEADER_SEARCH_PATHS = /usr/local/Cellar/imagemagick/7.0.8-42/include/ImageMagick-7
-OTHER_SWIFT_FLAGS = -Xcc -DMAGICKCORE_HDRI_ENABLE=0 -Xcc -DMAGICKCORE_QUANTUM_DEPTH=16
