@@ -6,18 +6,21 @@ public class Tiler {
 
   let originalImage: Image
   let maxLevel: Int
+	let filetype: String
   let writer: Writer
 
-  public init(inputPath: String, outputPath: String) {
+	public init(inputPath: String, outputPath: String, outputFiletype: String = "png") {
     self.writer = Writer(outputDir: outputPath)
     self.originalImage = Image(filePath: inputPath)!
     self.maxLevel = originalImage.size.tilingTimes
+    self.filetype = outputFiletype
   }
 
-  public init(input: Image, writer: Writer) {
+  public init(input: Image, writer: Writer, outputFiletype: String = "png") {
     self.writer = writer
     self.originalImage = input
     self.maxLevel = input.size.tilingTimes
+    self.filetype = outputFiletype
   }
 
   public func tile(levels onlyLevels: ClosedRange<Int>? = nil) {
@@ -61,7 +64,7 @@ public class Tiler {
 
         tileImage.crop(x: x, y: y, width: tileSide, height: tileSide)
 
-        let tile = Tile(level: level, position: position, image: tileImage)
+				let tile = Tile(level: level, position: position, image: tileImage, filetype: self.filetype)
         writer.write(tile)
 
         y += tileSide

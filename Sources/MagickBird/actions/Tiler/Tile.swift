@@ -3,11 +3,13 @@ public struct Tile {
   public let level: Int
   public let position: Position
   public let image: Image
+	public let filetype: String
 
-  public init(level: Int, position: Position, image: Image) {
+	public init(level: Int, position: Position, image: Image, filetype: String) {
     self.level = level
     self.position = position
     self.image = image
+		self.filetype = filetype
   }
 
   public struct Position {
@@ -41,6 +43,6 @@ public struct Tile {
 
 extension Tile: Writable {
   public var filename: String {
-    return "\(level)_\(position.x)_\(position.y).png"
+    "\(level)_\(position.x)_\(position.y).\(filetype)"
   }
 }
