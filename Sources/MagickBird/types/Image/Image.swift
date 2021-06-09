@@ -29,7 +29,9 @@ public class Image {
   }
 
   public required init?() {
-    guard let pointer = NewMagickWand() else { return nil }
+    guard let pointer = NewMagickWand() else { 
+      return nil 
+    }
     self.pointer = pointer
   }
 
