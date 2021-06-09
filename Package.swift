@@ -6,19 +6,14 @@ import PackageDescription
 let package = Package(
     name: "MagickBird",
     platforms: [
-      .macOS(.v11),
+      .macOS(.v10_15),
     ],
     products: [
         .library(name: "MagickBird", targets: ["MagickBird"])
     ],
-    dependencies: [
-
-    ],
+    dependencies: [ ],
     targets: [
-
-        .target(name: "MagickBirdSample", dependencies: ["MagickBird"]),
         .target(name: "MagickBird", dependencies: ["MagickWand"]),
         .systemLibrary(name: "MagickWand", pkgConfig: "MagickWand"),
     ]
-
 )

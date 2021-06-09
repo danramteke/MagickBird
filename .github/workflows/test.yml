@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         include:
+          - os: macos-10.15
           - os: macos-11.0
           - os: ubuntu-20.04
     steps:
@@ -25,3 +26,9 @@ jobs:
 
       - name: run sample
         run: Sample/run-sample.sh
+
+      - name: Archive sample artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: Sample/output
