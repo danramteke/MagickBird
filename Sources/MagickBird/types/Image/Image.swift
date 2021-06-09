@@ -1,10 +1,3 @@
-//
-//  Image.swift
-//  MagickBird
-//
-//  Created by Daniel Ramteke on 3/22/19.
-//
-
 import Foundation
 import MagickWand
 

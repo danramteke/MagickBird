@@ -1,10 +1,3 @@
-//
-//  Size.swift
-//  MagickBirdLib
-//
-//  Created by Daniel Ramteke on 3/22/19.
-//
-
 import Foundation
 
 public struct Size: Equatable  {

@@ -1,16 +1,34 @@
 import Foundation
 import MagickWand
 
-extension Image {
-  public func setFormat(_ string: String) {
-    MagickSetImageFormat(self.pointer, string)
-  }
-  
-  public func setCompressionQuality(_ int: Int) {
-    MagickSetImageCompressionQuality(self.pointer, int)
-  }
+public struct Resolution {
+	public let x: Double
+	public let y: Double
 
-  public func setResolution(_ a: Double, _ b: Double) {
-    MagickSetImageResolution(self.pointer, a, b)
-  }
+	public init(x: Double, y: Double) {
+		self.x = x
+		self.y = y
+	}
+}
+
+extension Image {
+	
+	public func setCompressionQuality(_ int: Int) {
+		MagickSetImageCompressionQuality(self.pointer, int)
+	}
+	
+	public func setResolution(_ resolution: Resolution) {
+		MagickSetImageResolution(self.pointer, resolution.x, resolution.y)
+	}
+	
+	public var resolution: Resolution {
+		var x: Double = 0
+		var y: Double = 0
+		MagickGetImageResolution(self.pointer, &x, &y)
+		return Resolution(x: x, y: y)
+	}
+	
+	public func setDepth(_ a: Int) {
+		MagickSetImageDepth(self.pointer, a)
+	}
 }
