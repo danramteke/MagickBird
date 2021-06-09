@@ -1,8 +1,5 @@
 module MagickWand [system] {
     header "MagickCore/MagickCore.h"
     header "MagickWand/MagickWand.h"
-
-    link "MagickWand-7.Q16HDRI"
-    link "MagickCore-7.Q16HDRI"
     export *
 }
