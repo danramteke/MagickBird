@@ -23,6 +23,9 @@ jobs:
       - name: build
         run: swift build
 
+      - name: test
+        run: swift test
+
       - name: run sample
         run: Sample/run-sample.sh
 
