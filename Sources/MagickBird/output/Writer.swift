@@ -11,12 +11,12 @@ public class Writer {
     self.outputDir = outputDir
   }
 
-  public func write(_ writable: Writable) {
-    self.write(image: writable.image, to: writable.filename)
+  public func write(_ writable: Writable) throws {
+    try self.write(image: writable.image, to: writable.filename)
   }
 
-  public func write(image: Image, to filename: String) {
+  public func write(image: Image, to filename: String) throws {
     let url = URL(fileURLWithPath: "\(self.outputDir)\(filename)")
-    try! image.data!.write(to: url, options: .atomic)
+    try image.data!.write(to: url, options: .atomic)
   }
 }

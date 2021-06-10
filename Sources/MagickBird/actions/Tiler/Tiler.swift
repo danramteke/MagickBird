@@ -10,25 +10,28 @@ public class Tiler {
 
   let originalImage: Image
   let maxLevel: Int
-	let filetype: String
+	let fileExtension: String
+  let format: String?
   let writer: Writer
 
 	weak var tilerDelegate: TilerDelegate?
 
-	public init(inputPath: String, outputPath: String, tileSide: Int = 512, outputFiletype: String = "png") {
+	public init(inputPath: String, outputPath: String, tileSide: Int = 512, outputFormat: String?, outputFileExtension: String = "png") {
     self.writer = Writer(outputDir: outputPath)
     self.originalImage = Image(filePath: inputPath)!
 		self.tileSide = tileSide
     self.maxLevel = originalImage.size.tilingTimes
-    self.filetype = outputFiletype
+    self.format = outputFormat
+    self.fileExtension = outputFileExtension
   }
 
-	public init(input: Image, writer: Writer, tileSide: Int = 512, outputFiletype: String = "png") {
+	public init(input: Image, writer: Writer, tileSide: Int = 512, outputFormat: String?, outputFileExtension: String = "png") {
     self.writer = writer
     self.originalImage = input
 		self.tileSide = tileSide
     self.maxLevel = input.size.tilingTimes
-    self.filetype = outputFiletype
+    self.format = outputFormat
+    self.fileExtension = outputFileExtension
   }
 
   public func tile(levels onlyLevels: ClosedRange<Int>? = nil) {
@@ -46,25 +49,29 @@ public class Tiler {
 		tilerDelegate?.didStart(level: level)
 
     let imageSize = image.size
-
     var position: Tile.Position = .zero 
+    var point: Point = .zero
 
-    var x = 0
-    while x < imageSize.width {
+
+    while point.x < imageSize.width {
       position = position.resettingY
-      var y = 0
-      while y < imageSize.height {
+      
+      while point.y < imageSize.height {
         let tileImage = image.clone()!
 
-        tileImage.crop(x: x, y: y, width: tileSide, height: tileSide)
+        tileImage.crop(x: point.x, y: point.y, width: tileSide, height: tileSide)
 
-				let tile = Tile(level: level, position: position, image: tileImage, filetype: self.filetype)
-        writer.write(tile)
+        if let format = self.format {
+          tileImage.format = format 
+        }
+     
+				let tile = Tile(level: level, position: position, image: tileImage)
+        try! writer.write(image: tile.image, to: "\(tile.filestem).\(fileExtension)")
 
-        y += tileSide
+        point = point.incrementingY(by: tileSide)
         position = position.incrementingY
       }
-      x += tileSide
+      point = point.incrementingX(by: tileSide)
       position = position.incrementingX
     }
   }
