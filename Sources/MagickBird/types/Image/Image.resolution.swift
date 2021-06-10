@@ -14,14 +14,15 @@ public struct Resolution: Equatable {
 
 extension Image {
 
-	public func setResolution(_ resolution: Resolution) {
-		MagickSetImageResolution(self.pointer, resolution.x, resolution.y)
-	}
-	
 	public var resolution: Resolution {
-		var x: Double = 0
-		var y: Double = 0
-		MagickGetImageResolution(self.pointer, &x, &y)
-		return Resolution(x: x, y: y)
+		get {
+			var x: Double = 0
+			var y: Double = 0
+			MagickGetImageResolution(self.pointer, &x, &y)
+			return Resolution(x: x, y: y)
+		}
+		set {
+			MagickSetImageResolution(self.pointer, newValue.x, newValue.y)
+		}
 	}
 }

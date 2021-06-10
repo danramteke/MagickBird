@@ -1,37 +1,32 @@
 import MagickWand
 import Foundation
 
-public protocol TilerDelegate: AnyObject {
-	func didStart(level: Int)
-}
-
 public class Tiler {
 	public let tileSide: Int
 
   let originalImage: Image
   let maxLevel: Int
 	let fileExtension: String
-  let format: String?
   let writer: Writer
 
-	weak var tilerDelegate: TilerDelegate?
+  let tileAdjustmentBlock: ((Tile) -> Image)?
 
-	public init(inputPath: String, outputPath: String, tileSide: Int = 512, outputFormat: String?, outputFileExtension: String = "png") {
+	public init(inputPath: String, outputPath: String, tileSide: Int = 512, outputFileExtension: String = "png", tileAdjustmentBlock: ( (Tile) -> Image)? = nil) {
     self.writer = Writer(outputDir: outputPath)
     self.originalImage = Image(filePath: inputPath)!
 		self.tileSide = tileSide
     self.maxLevel = originalImage.size.tilingTimes
-    self.format = outputFormat
     self.fileExtension = outputFileExtension
+    self.tileAdjustmentBlock = tileAdjustmentBlock
   }
 
-	public init(input: Image, writer: Writer, tileSide: Int = 512, outputFormat: String?, outputFileExtension: String = "png") {
+	public init(input: Image, writer: Writer, tileSide: Int = 512, outputFileExtension: String = "png", tileAdjustmentBlock: ( (Tile) -> Image)? = nil) {
     self.writer = writer
     self.originalImage = input
 		self.tileSide = tileSide
     self.maxLevel = input.size.tilingTimes
-    self.format = outputFormat
     self.fileExtension = outputFileExtension
+    self.tileAdjustmentBlock = tileAdjustmentBlock
   }
 
   public func tile(levels onlyLevels: ClosedRange<Int>? = nil) {
@@ -46,12 +41,10 @@ public class Tiler {
   }
 
   private func makeTiles(for image: Image, at level: Int) {
-		tilerDelegate?.didStart(level: level)
 
     let imageSize = image.size
     var position: Tile.Position = .zero 
     var point: Point = .zero
-
 
     while point.x < imageSize.width {
       position = position.resettingY
@@ -61,12 +54,9 @@ public class Tiler {
 
         tileImage.crop(x: point.x, y: point.y, width: tileSide, height: tileSide)
 
-        if let format = self.format {
-          tileImage.format = format 
-        }
-     
 				let tile = Tile(level: level, position: position, image: tileImage)
-        try! writer.write(image: tile.image, to: "\(tile.filestem).\(fileExtension)")
+        let adjustedTileImage = tileAdjustmentBlock?(tile) ?? tile.image
+        try! writer.write(image: adjustedTileImage, to: "\(tile.filestem).\(fileExtension)")
 
         point = point.incrementingY(by: tileSide)
         position = position.incrementingY
