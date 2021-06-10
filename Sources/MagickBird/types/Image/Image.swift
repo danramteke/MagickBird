@@ -5,6 +5,11 @@ public class Image {
   var pointer: OpaquePointer
 
   public convenience init?(filePath: String) {
+
+		guard FileManager.default.fileExists(atPath: filePath) else {
+			return nil
+		}
+
     self.init()
     MagickReadImage(self.pointer, filePath)
   }

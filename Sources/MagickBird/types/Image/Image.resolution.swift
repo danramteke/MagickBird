@@ -1,7 +1,8 @@
 import Foundation
 import MagickWand
 
-public struct Resolution {
+public struct Resolution: Equatable {
+
 	public let x: Double
 	public let y: Double
 
