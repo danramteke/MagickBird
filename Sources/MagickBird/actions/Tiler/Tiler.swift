@@ -48,6 +48,7 @@ public class Tiler {
 
     while point.x < imageSize.width {
       position = position.resettingY
+      point = point.resettingY
       
       while point.y < imageSize.height {
         let tileImage = image.clone()!
