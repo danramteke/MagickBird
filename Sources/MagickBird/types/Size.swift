@@ -37,7 +37,7 @@ extension Image {
 extension Size {
 
 	/// Calculates how often an image with given dimension can be divided by two until 1x1 px are reached.
-  var tilingTimes: Int {
+  public var tilingTimes: Int {
     let sideLog = log(Double(self.longestSide))
     let denominator = log(Double(2))
     return Int(ceil(sideLog/denominator))
