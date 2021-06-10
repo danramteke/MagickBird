@@ -1,5 +1,6 @@
 import Foundation
 
+/// Represents the size of an image
 public struct Size: Equatable  {
   public static let zero = Size(width: 0, height: 0)
 
@@ -17,16 +18,27 @@ public struct Size: Equatable  {
 }
 
 extension Size {
-  var longestLength: Int {
+
+	/// Calculates the max of the width and height.
+  public var longestSide: Int {
     max(self.width, self.height)
   }
 }
 
-extension Size {
-  var tilingTimes: Int {
-    // Calculates how often an image with given dimension can be divided by two until 1x1 px are reached.
+extension Image {
 
-    let sideLog = log(Double(self.longestLength))
+	/// Calculates the max of the width and height.
+	public var longestSide: Int {
+		let size = self.size
+		return max(size.width, size.height)
+	}
+}
+
+extension Size {
+
+	/// Calculates how often an image with given dimension can be divided by two until 1x1 px are reached.
+  var tilingTimes: Int {
+    let sideLog = log(Double(self.longestSide))
     let denominator = log(Double(2))
     return Int(ceil(sideLog/denominator))
   }

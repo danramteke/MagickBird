@@ -7,10 +7,10 @@ final class ReadPropertiesTests: XCTestCase {
 
 	func testReadDimensions() {
 
-
 		XCTAssertEqual(3931, image.width)
 		XCTAssertEqual(2247, image.height)
 		XCTAssertEqual(Size(width: 3931, height: 2247), image.size)
+		XCTAssertEqual(3931, image.longestSide)
 	}
 
 	func testReadResolution() {
