@@ -1,5 +1,5 @@
-import Foundation
 import MagickWand
+import Foundation
 
 public class Image {
   var pointer: OpaquePointer
@@ -15,7 +15,7 @@ public class Image {
   }
   
   public var isMagickWand: Bool {
-    return IsMagickWand(self.pointer).bool
+    IsMagickWand(self.pointer).bool
   }
   
   public func clear() {
@@ -33,15 +33,15 @@ public class Image {
     DestroyMagickWand(self.pointer)
   }
   
-  public required init?() {
-    guard let pointer = NewMagickWand() else { 
-      return nil 
-    }
-    self.pointer = pointer
+  public required init() {
+    self.pointer = NewMagickWand()
   }
   
-  public required init(pointer: OpaquePointer) {
+  public required init?(pointer: OpaquePointer) {
     self.pointer = pointer
+    guard isMagickWand else {
+      return nil
+    }
   }
   
   public convenience init?(data: Data) {

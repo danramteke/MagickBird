@@ -54,6 +54,7 @@ public class Tiler {
         let tileImage = image.clone()!
         
         tileImage.crop(x: point.x, y: point.y, width: tileSide, height: tileSide)
+//        tileImage.resetImagePage()
         
         let tile = Tile(level: level, position: position, image: tileImage)
         let adjustedTileImage = tileAdjustmentBlock?(tile) ?? tile.image

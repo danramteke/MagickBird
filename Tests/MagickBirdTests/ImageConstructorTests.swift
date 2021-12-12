@@ -31,7 +31,7 @@ final class ImageConstructorTests: XCTestCase {
 	}
 
 	func testLoadsAnImageFromData() {
-		let image = Image()!
+		let image = Image()
 		image.read(data: Fixture.tibet.data)
 
 		XCTAssertNotNil(image.data)
