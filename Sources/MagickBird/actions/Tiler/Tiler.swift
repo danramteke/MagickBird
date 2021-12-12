@@ -45,16 +45,15 @@ public class Tiler {
     let imageSize = image.size
     var position: Tile.Position = .zero 
     var point: Point = .zero
-    
+
     while point.x < imageSize.width {
       position = position.resettingY
       point = point.resettingY
       
       while point.y < imageSize.height {
         let tileImage = image.clone()!
-        
+
         tileImage.crop(x: point.x, y: point.y, width: tileSide, height: tileSide)
-//        tileImage.resetImagePage()
         
         let tile = Tile(level: level, position: position, image: tileImage)
         let adjustedTileImage = tileAdjustmentBlock?(tile) ?? tile.image

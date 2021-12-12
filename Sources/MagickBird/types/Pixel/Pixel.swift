@@ -12,6 +12,11 @@ public class Pixel {
     DestroyPixelWand(self.pointer)
   }
 
+  public func clear() {
+    guard self.isPixelWand else { return }
+    ClearPixelWand(self.pointer)
+  }
+
   public required init() {
     self.pointer = NewPixelWand()
   }
@@ -21,6 +26,18 @@ public class Pixel {
     guard isPixelWand else {
       return nil
     }
+  }
+
+  deinit {
+    self.clear()
+    self.destroy()
+  }
+
+  public convenience init(red: Double, blue: Double, green: Double) {
+    self.init()
+    self.red = red
+    self.blue = blue
+    self.green = green
   }
 
   public func clone() -> Self? {
