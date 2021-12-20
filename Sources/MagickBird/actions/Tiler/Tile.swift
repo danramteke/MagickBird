@@ -9,10 +9,6 @@ public struct Tile {
     self.position = position
     self.image = image
   }
-
-  public var filestem: String {
-    "\(level)_\(position.x)_\(position.y)"
-  }
 }
 
 extension Tile {
